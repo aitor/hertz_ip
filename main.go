@@ -1,16 +1,20 @@
 package main
 
 import (
-    "context"
-
-	"github.com/cloudwego/hertz/pkg/app"
-	"github.com/cloudwego/hertz/pkg/app/server"
-	"github.com/cloudwego/hertz/pkg/common/utils"
-	"github.com/cloudwego/hertz/pkg/protocol/consts"
+  "os"
+  "fmt"
+  "context"
+  "github.com/cloudwego/hertz/pkg/app"
+  "github.com/cloudwego/hertz/pkg/app/server"
+  "github.com/cloudwego/hertz/pkg/common/utils"
+  "github.com/cloudwego/hertz/pkg/protocol/consts"
 )
 
 func main() {
-    h := server.Default()
+    port := fmt.Sprintf(":%s", os.Getenv("POST"))
+    h := server.Default(
+      server.WithHostPorts(port),
+    )
 
     h.GET("/", func(c context.Context, ctx *app.RequestContext) {
             ctx.JSON(consts.StatusOK, utils.H{"ip": ctx.ClientIP()})
