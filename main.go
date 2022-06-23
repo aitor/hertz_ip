@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-    port := fmt.Sprintf(":%s", os.Getenv("POST"))
+    port := fmt.Sprintf(":%s", os.Getenv("PORT"))
     h := server.Default(
       server.WithHostPorts(port),
     )
