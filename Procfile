@@ -1,1 +1,1 @@
-web: ./hertz_ip
+web: ./bin/hertz_ip
